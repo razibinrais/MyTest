@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@ Master Language="C#" Inherits="Mscom.Csp.SharePoint.Ecm.Controls.MasterPage"%>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="Mscom.Csp.SharePoint.Ecm.Controls" %>
+<%@ Assembly Name="Microsoft.SharePoint.Portal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Assembly Name="Microsoft.SharePoint.Portal, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
+	Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
+	Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" Src="~/_controltemplates/OEMWelcome.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="DesignModeConsole" Src="~/_controltemplates/DesignModeConsole.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="MUISelector" Src="~/_controltemplates/MUISelector.ascx" %>
+<%@ Register TagPrefix="PublishingWebControls" Namespace="Microsoft.SharePoint.Publishing.WebControls"
+	Assembly="Microsoft.SharePoint.Publishing, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="PublishingNavigation" Namespace="Microsoft.SharePoint.Publishing.Navigation"
+	Assembly="Microsoft.SharePoint.Publishing, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="PublishingVariations" TagName="VariationsLabelMenu" Src="~/_controltemplates/VariationsLabelMenu.ascx" %>
+<%@ Register TagPrefix="PublishingSiteAction" TagName="SiteActionMenu" Src="~/_controltemplates/PublishingActionMenu.ascx" %>
+<%@ Register TagPrefix="MSSWC" Namespace="Microsoft.SharePoint.Portal.WebControls"
+	Assembly="Microsoft.Office.Server.Search, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="PublishingConsole" TagName="Console" Src="~/_controltemplates/PublishingConsole.ascx" %>
+
+<%-- START MSCOM Controls --%>
+<%-- <%@ Register TagPrefix="mscom" Namespace="Mscom.Csp.SharePoint.Ecm.WebParts.MscomToolbar"
+ Assembly="Mscom.Csp.SharePoint.Ecm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=754430038b64063c" %> --%>
+<%@ Register TagPrefix="MyOEMToolbar" TagName="TopLinksToolbar" Src="~/_controltemplates/MyOEM/MyOEMToolbar/MyOemToolbarUserControl.ascx" %> 
+                                                              
+<%@ Register TagPrefix="mscom" Namespace="Mscom.Csp.SharePoint.Ecm.WebParts.MscomFooter"
+	Assembly="Mscom.Csp.SharePoint.Ecm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=754430038b64063c" %>
+<%@ Register TagPrefix="myoem" Namespace="WebParts.WebParts.MyOEMSearch"
+	Assembly="WebParts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=51d627e49b74132d" %>
+<%@ Register TagPrefix="mscom" Namespace="Mscom.Csp.SharePoint.Ecm.WebParts.MscomBI"
+	Assembly="Mscom.Csp.SharePoint.Ecm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=754430038b64063c" %>
+<%@ Register TagPrefix="mscom" Namespace="Mscom.Csp.SharePoint.Ecm.WebParts.MscomNavigation"
+	Assembly="Mscom.Csp.SharePoint.Ecm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=754430038b64063c" %>
+<%@ Register TagPrefix="mscomc" Namespace="Mscom.Csp.SharePoint.Ecm.Controls" 
+	Assembly="Mscom.Csp.SharePoint.Ecm.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=754430038b64063c" %>
+<%-- END MSCOM Controls --%>
+<%@ Register Tagprefix="SharePointWebControls" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"  %>
+<%@ Register TagPrefix="MSITControls" TagName="SilentRpsAuth" src="~/_CONTROLTEMPLATES/SilentRpsAuthentication.ascx" %>
+<%@ Register TagPrefix="RC" Assembly="OEMRibbonContainer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=64cf2795c22c118c" namespace="OEMRibbonContainer" %> 
+<%@ Register TagPrefix="OEMRibbonControl" TagName="OEMRibbonControlCheck" Src="~/_controltemplates/OEMRibbonToggleControl.ascx" %> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="<%$Resources:wss, multipages_direction_dir_value %>" lang="<%$Resources:wss, language_value %>" runat="server">
+<head runat="server">
+	<meta http-equiv="X-UA-Compatible" content="IE=8;IE=EmulateIE9;IE=10;requiresActiveX=true"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<%-- Robots Tag --%>
+	<SharePoint:RobotsMetaTag ID="RobotsMetaTag1" runat="server" />
+	<%-- Page Title --%>
+	<title>
+		<asp:ContentPlaceHolder ID="PlaceHolderPageTitle" runat="server" />
+	</title>
+	<SharePoint:CssLink ID="CssLink1" runat="server" />
+	<SharePoint:ULSClientConfig ID="ULSClientConfig1" runat="server" />
+	<script type="text/javascript">        var _fV4UI = true;</script>
+	<SharePoint:ScriptLink ID="ScriptLink1" Name="init.js" runat="server" />
+	<SharePoint:CustomJSUrl ID="CustomJSUrl1" runat="server" />
+	<SharePoint:SoapDiscoveryLink ID="SoapDiscoveryLink1" runat="server" />
+	<asp:ContentPlaceHolder ID="PlaceHolderBodyAreaClass" runat="server" />
+	<asp:ContentPlaceHolder ID="PlaceHolderTitleAreaClass" runat="server"  />
+	<SharePoint:SPPageManager ID="SPPageManager1" runat="server" />
+	<SharePoint:SPHelpPageComponent ID="SPHelpPageComponent1" Visible="false" runat="server" />
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery/jquery-1.5.1.min.js"></script>    
+    <SharePointWebControls:ScriptLink ID="ScriptLink3" language="javascript" name="/_layouts/common.js" runat="server"/>
+	<%-- default Mscom CSS for the master page  --%>
+	<link runat="server" id="MscomDefaultCss" rel="stylesheet" type="text/css" href="/_layouts/csp/default.css" />
+	<%-- default Myoem CSS for the master page  --%>
+    <SharePointWebControls:CssRegistration name="<% $SPUrl:~sitecollection/Style Library/css/styles.css %>" runat="server"/>
+    <%-- horizontal navigation CSS --%>
+	<link runat="server" id="MscomNavCss" rel="stylesheet" type="text/css" href="/_layouts/csp/mscomHorizNav.css" />
+	<%-- Placeholder to add additional stuff in head --%>
+	<asp:ContentPlaceHolder ID="PlaceHolderAdditionalPageHead" runat="server" />
+	<%-- DelegateControl AdditionalPageHead --%>
+	<SharePoint:DelegateControl ID="DelegateControl1" runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+	<%-- Fav Icon --%>
+	<SharePoint:SPShortcutIcon ID="SPShortcutIcon1" runat="server" IconUrl="/_layouts/images/favicon.ico" />
+	<%-- Emits page metadata --%>
+	<mscomc:PageMetadata ID="PageMetadata" runat="server" />
+</head>
+	<%-- Do we need the JS function ?  --%>
+	<asp:Literal id="MscomBody" runat="server">
+		<body onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();" class="v4master">
+	</asp:Literal>
+	<%-- Do we need the JS function ?  --%>
+	<form id="Form1" runat="server" onsubmit="return _spFormOnSubmitWrapper();">
+		<%-- ASP.NET Script Manager --%>
+		<asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true"
+			EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+		<%-- SP Webpart Manager  --%>
+		<WebPartPages:SPWebPartManager ID="SPWebPartManager1" runat="server" />
+        
+        <%-- START PVP Silent Auth control --%>
+        <MSITControls:SilentRpsAuth runat="server" id="SilentRpsAuth_1"></MSITControls:SilentRpsAuth>
+
+		<%-- START Ribbon --%>   
+        <asp:Panel id="MscomRibbon" runat="server">
+		<div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle" style="display:none">
+			<div id="s4-ribboncont">
+            <RC:OEMRibbonContainer runat="server">
+			<SharePoint:SPRibbon ID="SPRibbon1" runat="server" PlaceholderElementId="RibbonContainer" CssFile="">
+				<SharePoint:SPRibbonPeripheralContent ID="SPRibbonPeripheralContent1" runat="server"
+				Location="TabRowLeft" CssClass="ms-siteactionscontainer s4-notdlg">
+				<span class="ms-siteactionsmenu" id="siteactiontd">
+					<SharePoint:SiteActions runat="server" AccessKey="<%$Resources:wss,tb_SiteActions_AK%>"
+						ID="SiteActionsMenuMain" PrefixHtml="" SuffixHtml="" MenuNotVisibleHtml="&amp;nbsp;">
+						<CustomTemplate>
+							<SharePoint:FeatureMenuTemplate ID="FeatureMenuTemplate1" runat="server" FeatureScope="Site"
+								Location="Microsoft.SharePoint.StandardMenu" GroupId="SiteActions" UseShortId="true">
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_EditPage" Text="<%$Resources:wss,siteactions_editpage%>"
+									Description="<%$Resources:wss,siteactions_editpagedescriptionv4%>" ImageUrl="/_layouts/images/ActionsEditPage.png"
+									MenuGroupId="100" Sequence="110" ClientOnClickNavigateUrl="javascript:ChangeLayoutMode(false);" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_TakeOffline" Text="<%$Resources:wss,siteactions_takeoffline%>"
+									Description="<%$Resources:wss,siteactions_takeofflinedescription%>" ImageUrl="/_layouts/images/connecttospworkspace32.png"
+									MenuGroupId="100" Sequence="120" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_CreatePage" Text="<%$Resources:wss,siteactions_createpage%>"
+									Description="<%$Resources:wss,siteactions_createpagedesc%>" ImageUrl="/_layouts/images/NewContentPageHH.png"
+									MenuGroupId="200" Sequence="210" UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('Page')) { OpenCreateWebPageDialog('~site/_layouts/createwebpage.aspx') }"
+									PermissionsString="AddListItems, EditListItems" PermissionMode="All" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_CreateDocLib" Text="<%$Resources:wss,siteactions_createdoclib%>"
+									Description="<%$Resources:wss,siteactions_createdoclibdesc%>" ImageUrl="/_layouts/images/NewDocLibHH.png"
+									MenuGroupId="200" Sequence="220" UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('DocLib')) { GoToPage('~site/_layouts/new.aspx?FeatureId={00bfea71-e717-4e80-aa17-d0c71b360101}&amp;ListTemplate=101') }"
+									PermissionsString="ManageLists" PermissionMode="Any" VisibilityFeatureId="00BFEA71-E717-4E80-AA17-D0C71B360101" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_CreateSite" Text="<%$Resources:wss,siteactions_createsite%>"
+									Description="<%$Resources:wss,siteactions_createsitedesc%>" ImageUrl="/_layouts/images/newweb32.png"
+									MenuGroupId="200" Sequence="230" UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('Site')) { STSNavigate('~site/_layouts/newsbweb.aspx') }"
+									PermissionsString="ManageSubwebs,ViewFormPages" PermissionMode="All" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_Create" Text="<%$Resources:wss,siteactions_create%>"
+									Description="<%$Resources:wss,siteactions_createdesc%>" MenuGroupId="200" Sequence="240"
+									UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="if (LaunchCreateHandler('All')) { STSNavigate('~site/_layouts/create.aspx') }"
+									PermissionsString="ManageLists, ManageSubwebs" PermissionMode="Any" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_ViewAllSiteContents" Text="<%$Resources:wss,quiklnch_allcontent%>"
+									Description="<%$Resources:wss,siteactions_allcontentdescription%>" ImageUrl="/_layouts/images/allcontent32.png"
+									MenuGroupId="300" Sequence="302" UseShortId="true" ClientOnClickNavigateUrl="~site/_layouts/viewlsts.aspx"
+									PermissionsString="ViewFormPages" PermissionMode="Any" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_EditSite" Text="<%$Resources:wss,siteactions_editsite%>"
+									Description="<%$Resources:wss,siteactions_editsitedescription%>" ImageUrl="/_layouts/images/SharePointDesigner32.png"
+									MenuGroupId="300" Sequence="304" UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="EditInSPD('~site/',true);"
+									PermissionsString="AddAndCustomizePages" PermissionMode="Any" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_SitePermissions" Text="<%$Resources:wss,people_sitepermissions%>"
+									Description="<%$Resources:wss,siteactions_sitepermissiondescriptionv4%>" ImageUrl="/_layouts/images/Permissions32.png"
+									MenuGroupId="300" Sequence="310" UseShortId="true" ClientOnClickNavigateUrl="~site/_layouts/user.aspx"
+									PermissionsString="EnumeratePermissions" PermissionMode="Any" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_Settings" Text="<%$Resources:wss,settings_pagetitle%>"
+									Description="<%$Resources:wss,siteactions_sitesettingsdescriptionv4%>" ImageUrl="/_layouts/images/settingsIcon.png"
+									MenuGroupId="300" Sequence="320" UseShortId="true" ClientOnClickNavigateUrl="~site/_layouts/settings.aspx"
+									PermissionsString="EnumeratePermissions,ManageWeb,ManageSubwebs,AddAndCustomizePages,ApplyThemeAndBorder,ManageAlerts,ManageLists,ViewUsageData"
+									PermissionMode="Any" />
+								<SharePoint:MenuItemTemplate runat="server" ID="MenuItem_CommitNewUI" Text="<%$Resources:wss,siteactions_commitnewui%>"
+									Description="<%$Resources:wss,siteactions_commitnewuidescription%>" ImageUrl="/_layouts/images/visualupgradehh.png"
+									MenuGroupId="300" Sequence="330" UseShortId="true" ClientOnClickScriptContainingPrefixedUrl="GoToPage('~site/_layouts/prjsetng.aspx')"
+									PermissionsString="ManageWeb" PermissionMode="Any" ShowOnlyIfUIVersionConfigurationEnabled="true" />
+							</SharePoint:FeatureMenuTemplate>
+						</CustomTemplate>
+					</SharePoint:SiteActions>
+				</span>
+				<SharePoint:PageStateActionButton ID="PageStateActionButton" runat="server" />
+				</SharePoint:SPRibbonPeripheralContent>
+				<SharePoint:SPRibbonPeripheralContent
+						runat="server"
+						Location="TabRowRight"
+						ID="RibbonTabRowRight"
+						CssClass="s4-trc-container s4-notdlg">
+					<SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" />
+					 <a href="#" tabindex="-1" style="display:none"></a><a href="#" tabindex="-1" style="display:none"></a>
+					 <div class="s4-trc-container-menu">
+						 <div>
+							<wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false">
+							</wssuc:Welcome>
+							<wssuc:MUISelector ID="IdMuiSelector" runat="server"/>
+						</div>
+					</div>
+					<SharePoint:DelegateControl ControlId="GlobalSiteLink2" ID="GlobalDelegate2" Scope="Farm" runat="server" />
+					<span>
+						<span class="s4-devdashboard">
+							<Sharepoint:DeveloperDashboardLauncher
+								ID="DeveloperDashboardLauncher"
+								NavigateUrl="javascript:ToggleDeveloperDashboard()"
+								runat="server"
+								ImageUrl="/_layouts/images/fgimg.png"
+								Text="<%$Resources:wss,multipages_launchdevdashalt_text%>"
+								OffsetX=0
+								OffsetY=222
+								Height=16
+								Width=16 />
+						</span>
+					</span>
+					<div id="s4-searcharea" class="s4-search s4-rp" style="display:none">
+						<asp:ContentPlaceHolder ID="PlaceHolderSearchArea" runat="server">
+							<SharePoint:DelegateControl ID="DelegateControl2" runat="server" ControlId="SmallSearchInputBox" Version="4" />
+						</asp:ContentPlaceHolder>
+					</div>
+					<PublishingWebControls:AuthoringContainer runat="server" id="AuthoringContainer1" DisplayAudience="AuthorsOnly">
+						<style type="text/css">#s4-searcharea {margin-top:10px;}</style>
+					</PublishingWebControls:AuthoringContainer>
+				</SharePoint:SPRibbonPeripheralContent>
+			</SharePoint:SPRibbon>
+             </RC:OEMRibbonContainer>
+			</div>
+			<%-- Notification. We don't want this in Rendering. --%>
+			<div id="notificationArea" class="s4-noti"></div>
+		
+			<%-- What is SPNavigation? Do we need this?--%>
+			<asp:ContentPlaceHolder ID="SPNavigation" runat="server">
+				<SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" ID="PublishingConsoleDelegate" />
+			</asp:ContentPlaceHolder>
+		
+			<%-- Who uses below WebPart? My guess would be ribbon? --%>
+			<div id="WebPartAdderUpdatePanelContainer">
+				<asp:UpdatePanel ID="WebPartAdderUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false"
+					runat="server">
+					<ContentTemplate>
+						<WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
+					</ContentTemplate>
+					<Triggers>
+						<asp:PostBackTrigger ControlID="WebPartAdder" />
+					</Triggers>
+				</asp:UpdatePanel>
+			</div>
+		</div>
+
+        <%-- This code is commented for hiding the ribbon in Rendering --%>
+
+       <%-- <Sharepoint:SPSecurityTrimmedControl runat="server" Permissions="AddListItems">
+            <script type="text/javascript">
+                document.getElementById("s4-ribbonrow").style.display = "block";
+            </script>
+        </SharePoint:SPSecurityTrimmedControl>--%>
+
+        <%-- calling usercontrol for hiding the ribbon in Rendering & showing Ribbon in Authroing --%>
+
+        <div> <OEMRibbonControl:OEMRibbonControlCheck ID="OEMRibbonChek"  runat="server" /> </div>
+
+        </asp:Panel>
+        <%-- END Ribbon --%>
+		<asp:Literal id="SPLayoutFix" runat="server" Visible="false"/>
+		<%-- START Main Content --%>
+		<div id="s4-workspace" class="mscomWrapper">
+			<div id="s4-bodyContainer">
+				<div id="mscomShell">
+					<div class="mscomPage">
+						<%--Header Links--%>
+						<asp:ContentPlaceHolder id="MscomToolbarPlaceHolder" runat="server">
+                             <%--  Replace MSCom Tool Bar to MyOem toolbar--%>
+							 <%-- <mscom:MscomToolbar runat="server" Description="Displays Toolbar" Title="MscomToolbar" ID="MscomToolbar"></mscom:MscomToolbar> --%>
+                             <MyOEMToolbar:TopLinksToolbar ID="SignInTopLinkssbar"  runat="server" /> 
+						</asp:ContentPlaceHolder>
+						<%--Branding--%>
+						<asp:ContentPlaceHolder id="MscomBrandPlaceHolder" runat="server">
+							<div class="mscomBrand">
+								<%--Logo--%>
+								<div class="logo">
+									<asp:HyperLink runat="server" NavigateUrl="/oem/myoem" id="MscomBrandLogoUri">
+										<%--Allow the logo to be overridden in the siteconfig--%>
+										<asp:Image id="MscomBrandLogoImage" ImageUrl="/oem/myoem/en/PublishingImages/Logo_oem.png" AlternateText="Microsoft" runat="server" />
+									</asp:HyperLink>
+								</div>
+								<%--Search--%>
+								<div class="MyOemSearch">
+								    <myoem:MyOemSearch runat="server" Description="Standard MyOem Search Control" Title="MyOem Search" ID="MyOemSearch"></myoem:MyOemSearch>
+								</div>
+								<%--Horizontal Navigation--%>
+								<asp:ContentPlaceHolder id="MscomNavigationPlaceHolder" runat="server">
+									<div class="mscomNav">
+										<mscom:MscomNavigation ID="MscomNav" runat="server" Description="Standard Mscom Navigation Control" Title="Mscom Navigation" />
+									</div>
+								</asp:ContentPlaceHolder>
+								<%--For rounded corners --%>
+								<div class="left-corner"></div>
+								<div class="right-corner"></div>
+							</div>
+						</asp:ContentPlaceHolder>
+						<%--Page Content--%>
+						<div id="content">
+							<div class='s4-ba'><div class='ms-bodyareacell'>
+								<div id="MSO_ContentDiv" runat="server">
+									<a name="mainContent"></a>
+									<asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">
+									</asp:ContentPlaceHolder>
+								</div>
+							</div></div>
+						</div>
+                        <script type='text/javascript'>hideSearchParts();</script>
+						<%-- Start Footer--%>
+						<asp:ContentPlaceHolder id="MscomFooterPlaceHolder" runat="server">
+							<mscom:MscomFooter runat="server" Description="Displays Footer" Title="Mscom Footer" ID="MscomFooter"></mscom:MscomFooter>
+						</asp:ContentPlaceHolder>
+						<%-- End Footer--%>
+					</div>
+				</div>
+				<%-- Shows the DeveloperDashboard if it is enabled on machine. --%>
+				<SharePoint:DeveloperDashboard ID="DeveloperDashboard1" runat="server" />
+			</div>
+		</div>
+		<%-- END Main Content --%>
+
+		<%-- START Panel; Which one should be deleted? --%>
+		<asp:Panel ID="Panel1" Visible="false" runat="server">
+		<asp:ContentPlaceHolder ID="PlaceHolderTitleBreadcrumb" runat="server" Visible="false" />
+		<asp:ContentPlaceHolder ID="PlaceHolderPageImage" runat="server" Visible="false" />
+		<asp:ContentPlaceHolder ID="PlaceHolderNavSpacer" runat="server" Visible="false" />
+		<asp:ContentPlaceHolder ID="PlaceHolderPageTitleInTitleArea" runat="server" Visible="false" />
+			 <asp:ContentPlaceHolder ID="PlaceHolderMiniConsole" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderCalendarNavigator" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderLeftNavBarTop" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderLeftNavBar" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderLeftActions" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderBodyLeftBorder" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderTitleLeftBorder" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderTitleAreaSeparator" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="OSSConsole" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderTitleRightMargin" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderPageDescription" runat="server" Visible="false" />
+			<asp:ContentPlaceHolder ID="PlaceHolderBodyRightMargin" runat="server" Visible="false" />
+			 
+		</asp:Panel>
+		<%-- END Panel --%>
+	</form>
+	<%-- START Mscom BI --%>
+	<mscom:MscomBI runat="server" ID="MscomBI" Title="Mscom BI" Description="Contains WT, WEDCS and Survey settings"></mscom:MscomBI>
+	<%-- End Mscom BI --%>
+   </body>
+</html>
